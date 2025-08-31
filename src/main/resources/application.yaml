@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: FusionCore
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fusion_core_db
+    username: sonalidash
+    password: sonalidash
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  
+  flyway:
+    enabled: ${FLYWAY_ENABLED:false}
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    out-of-order: true
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+embedding:
+  azureOpenAIApiKey: ${AZURE_OPENAI_API_KEY:your-api-key-here}
+  azureOpenAIEndpoint: ${AZURE_OPENAI_ENDPOINT:https://your-resource.openai.azure.com/}
+  azureOpenAIEmbeddingDeploymentName: ${AZURE_OPENAI_DEPLOYMENT:text-embedding-3-large}
+
+fusioncore:
+  embedding:
+    test-strategies: ${FUSIONCORE_TEST_STRATEGIES:true}
+    enable-async: ${FUSIONCORE_ASYNC:false}
+  processing:
+    default-strategy: character # character, sentence, paragraph
+    enable-caching: ${FUSIONCORE_CACHING:false}
+  search:
+    max-results: ${FUSIONCORE_MAX_SEARCH_RESULTS:50}
+    similarity-threshold: ${FUSIONCORE_SIMILARITY_THRESHOLD:0.7}
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: TRACE
