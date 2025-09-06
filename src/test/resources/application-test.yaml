@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false
+
+embedding:
+  azureOpenAIApiKey: test-key
+  azureOpenAIEndpoint: https://test.openai.azure.com/
+  azureOpenAIEmbeddingDeploymentName: test-deployment
+
+fusioncore:
+  embedding:
+    test-strategies: false
+  processing:
+    default-strategy: character
+    enable-caching: false
+
+logging:
+  level:
+    com.luckytapu.fusioncore: DEBUG
+    org.hibernate: WARN
